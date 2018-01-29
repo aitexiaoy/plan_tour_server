@@ -24,8 +24,8 @@ router.get('/geocode/', async function (ctx,next) {
             ctx.response.body = {
                 code: 1,
                 data:{
-                    latitude:geocode[0],
-                    longitude:geocode[1]
+                    latitude:geocode[1],
+                    longitude:geocode[0]
                 } ,
                 msg: 'ok',
             }
