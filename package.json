@@ -1,0 +1,14 @@
+{
+  "name": "plan_tour_server",
+  "version": "v0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "koa": "^2.4.1",
+    "koa-route": "^3.2.0",
+    "path": "^0.12.7"
+  }
+}
