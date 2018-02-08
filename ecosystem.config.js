@@ -27,7 +27,7 @@ module.exports = {
       host : '47.52.143.59',
       ref  : 'origin/master',
       repo : 'https://github.com/aitexiaoy/plan_tour_server.git',
-      path : '/yangpeng/web/plan_tour_server/deploy',
+      path : '/home/yangpeng/web/plan_tour_server/deploy',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
@@ -35,7 +35,7 @@ module.exports = {
       host : '47.52.143.59',
       ref  : 'origin/dev',
       repo : 'https://github.com/aitexiaoy/plan_tour_server.git',
-      path : '/yangpeng/web/plan_tour_server/dev',
+      path : '/home/yangpeng/web/plan_tour_server/dev',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
       env  : {
         NODE_ENV: 'dev'
