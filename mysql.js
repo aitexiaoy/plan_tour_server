@@ -18,14 +18,29 @@ const mysql_config=require('./mysql_config').mysql_config
 
 let connection = mysql.createConnection(mysql_config)
 
-connection.connect(error => {
-    if (error) {
-        logger.error(`[mysql] [error] [message:::${error}] [数据库连接失败]`);
-        return
-    }
-    logger.info(`[mysql] [success] [message:::数据库连接成功-${connection.threadId}]`);
-})
 
+
+
+const mysql_connection=()=>{
+    connection.connect(error => {
+        if (error) {
+            logger.error(`[mysql] [error] [message:::${error}] [数据库连接失败]`);
+            return
+        }
+        logger.info(`[mysql] [success] [message:::数据库连接成功-${connection.threadId}]`);
+    })
+    
+    connection.on('error', function (err){
+        console.log('------------------------------');
+        console.log(err);
+        logger.error(`[mysql] [error] [message:::${JSON.stringify(err)}] [连接错误]`);
+        if(err.code === 'ETIMEDOUT' ){
+            connection.connect();
+        }
+    });
+}
+
+mysql_connection();
 // connection.end()
 
 /****** 增加数据 */
@@ -47,6 +62,7 @@ exports.mysql_put = (options) => {
                     }
                 }
                 let sql = `INSERT INTO ${options.table_name}(${table_name.toString()}) VALUES(${table_value.toString()})`;
+
                 connection.query(sql, function (err, result) {
                     if (err) {
                         logger.error(`[mysql] [error] [sql:::${sql}] [message:::${err.message}]`);
@@ -69,7 +85,7 @@ exports.mysql_query = (options) => {
             let query_term = '';
             let array = [];
             for (let index in options.query) {
-                array.push(`${index}=${options.query[index]}`);
+                array.push(`${index}="${options.query[index]}"`);
             }
             if (array.length > 0) {
                 query_term = ` where ${array.toString().replace(/[',']/g,' and ')}`
