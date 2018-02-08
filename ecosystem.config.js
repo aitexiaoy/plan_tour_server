@@ -23,7 +23,7 @@ module.exports = {
    */
   deploy : {
     production : {
-      user : 'root',
+      user : 'yangpeng',
       host : '47.52.143.59',
       ref  : 'origin/master',
       repo : 'https://github.com/aitexiaoy/plan_tour_server.git',
@@ -31,7 +31,7 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     },
     dev : {
-      user : 'root',
+      user : 'yangpeng',
       host : '47.52.143.59',
       ref  : 'origin/dev',
       repo : 'https://github.com/aitexiaoy/plan_tour_server.git',
