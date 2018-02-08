@@ -33,7 +33,7 @@ module.exports = {
     dev : {
       user : 'yangpeng',
       host : '47.52.143.59',
-      ref  : 'origin/dev',
+      ref  : 'origin/master',
       repo : 'https://github.com/aitexiaoy/plan_tour_server.git',
       path : '/home/yangpeng/web/plan_tour_server/dev',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
